@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'login_successfully' => 'تم تسجيل الدخول بنجاح',
+    'log_out' => 'تم تسجيل الخروج بنجاح',
+    'not_verified' => 'حسابك غير مفعل',
+    'deleted' => 'عملية الحذف تمت بنجاح',
+    'updated' => 'عملية التجديث تمت بنجاح',
+    'added' => 'عملية الاضافة تمت بنجاح',
+    'educator' => 'معلم',
+    'student' => 'طالب',
+    'other' => 'اخرى',
+    'max_order'=> ' تم تجاوز حد الطلبات المصرح به',
+    'unauthorized' => 'غير مصرح لك',
+    'pending' => 'قيد الانتظار',
+    'placed' => 'تم الطلب',
+    'out_for_delivery' => 'قيد التوصيل',
+    'delivered' => 'تم التوصيل',
+    'cancelled' => 'تم الالغاء',
+    'cash_on_delivery' => 'الدفع عند الاستلام',
+    'tabby' => 'تابي',
+    'visa' => 'فيزا',
+    'mastercard' => 'ماستر كارد',
+    'mada' => 'مدى',
+    'general_contact' => 'اتصال عام',
+    'consultation' => 'استشارة',
+    'it_contact' => 'اتصال تقنية',
+];

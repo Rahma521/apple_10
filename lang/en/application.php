@@ -1,0 +1,30 @@
+<?php
+
+return [
+    'deleted' => 'The delete process was successful.',
+    'updated' => 'The update process was successful.',
+    'added' => 'The add process was successful.',
+    'login_successfully' => 'You are Login Successfully',
+    'log_out' => 'Log out Successfully',
+    'not_verified' => 'Your account not verified',
+    'not_allowed' => 'Your request is in process, please wait for review',
+    'educator' => 'Educator',
+    'student' => 'Student',
+    'other' => 'Other',
+    'max_order'=> 'You have reached the maximum number of orders',
+    'unauthorized' => 'Unauthorized',
+    'pending' =>'Pending',
+    'placed' => 'Placed',
+    'out_for_delivery' =>'Out For Delivery',
+    'delivered'=>'Delivered',
+    'cancelled'=>'Cancelled',
+    'cash_on_delivery' => 'Cash on Delivery',
+    'tabby' => 'Tabby',
+    'visa' => 'Visa',
+    'mastercard' => 'Mastercard',
+    'mada' => 'Mada',
+    'general_contact' => 'General Contact',
+    'consultation' => 'Consultation',
+    'it_contact' => 'IT Contact',
+
+];
