@@ -23,7 +23,8 @@ class OfferResource extends JsonResource
             'bundle_type' => $this->bundle_type,
 
             'percent' =>(int) $this->percent,
-            'price_before_discount' =>(int) $this->price_before_discount,
+            'price_before_discount' =>(double) $this->price_before_discount,
+            'price_after_discount' =>(double) $this->price_after_discount,
             'organization_id' => $this->organization_id,
             'offer-main_img' => $this->getFirstMediaUrl('offer_main'),
             'offer_sub_img' => $this->getMedia('offer_sub')->map(function($media) {

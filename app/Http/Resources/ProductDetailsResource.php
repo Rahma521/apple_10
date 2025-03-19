@@ -50,6 +50,7 @@ class ProductDetailsResource extends JsonResource
                     'id' => $organization->id,
                     'name' => $organization->name,
                     'discount' =>(int) $organization->pivot->discount ?? 0,
+                    'price_after_discount' =>( $organization->pivot->discount / 100) * $this->price ?? 0
                 ];
             }),
             'translations' => $this->translations ?? [],
