@@ -11,9 +11,9 @@ enum UserTypeEnum: int
     public function label(): string
     {
         return match ($this) {
-            self::instructor => __('application.educator'),
-            self::student => __('application.student'),
-            self::other => __('application.other'),
+            self::instructor => 'application.educator',
+            self::student =>'application.student',
+            self::other => 'application.other',
         };
     }
 }
