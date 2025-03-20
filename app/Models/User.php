@@ -71,8 +71,8 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'type' => UserTypeEnum::class,
-            'instructor_type' => InstructorType::class,
-            'education_level' => EducationLevel::class,
+           // 'instructor_type' => InstructorType::class,
+           // 'education_level' => EducationLevel::class,
         ];
     }
 
