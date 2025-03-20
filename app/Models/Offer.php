@@ -47,9 +47,8 @@ class Offer extends Model  implements HasMedia
         ]
     ];
 
-    protected function casts(): array
-    {
-        return [
+    protected  $casts=
+        [
             'title' => 'array',
             'brief' => 'array',
             'desc' => 'array',
@@ -59,7 +58,7 @@ class Offer extends Model  implements HasMedia
             'bundle_type' => OfferBundleTypeEnum::class,
             'status' =>StatusEnum::class
         ];
-    }
+
     public function organization(): BelongsTo
     {
         return $this->belongsTo(Organization::class);
