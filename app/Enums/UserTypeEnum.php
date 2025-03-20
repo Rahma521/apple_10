@@ -2,11 +2,11 @@
 
 namespace App\Enums;
 
-enum UserTypeEnum: int
+enum UserTypeEnum: string
 {
-    case instructor = 1;
-    case student = 2;
-    case other = 3;
+    case instructor = '1';
+    case student = '2';
+    case other = '3';
 
     public function label(): string
     {
