@@ -22,7 +22,7 @@ class OfferResource extends JsonResource
             'type' => $this->type,
             'bundle_type' => $this->bundle_type,
 
-            'percent' =>(int) $this->percent,
+            'percent' =>(double) $this->percent,
             'price_before_discount' =>(double) $this->price_before_discount,
             'price_after_discount' =>(double) $this->price_after_discount,
             'organization_id' => $this->organization_id,

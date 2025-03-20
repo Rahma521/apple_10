@@ -35,7 +35,7 @@ class Offer extends Model  implements HasMedia
 
     public $translatable = ['title', 'brief', 'desc'];
 
-    protected array $filterableColumns = [
+    public array $filterableColumns = [
         [
             'columns' => ['title'],
             'type' => 'like',
