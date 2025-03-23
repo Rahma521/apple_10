@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Base\DashboardController;
+use App\Http\Requests\PageRequest;
 use App\Http\Requests\Store\StoreCategoryRequest;
 use App\Http\Requests\Update\UpdateCategoryRequest;
 use App\Http\Resources\CategoryResource;
@@ -24,9 +25,9 @@ class CategoryController extends DashboardController
         $this->useFilter = true;
     }
 
-    public function mainCategories(): JsonResponse
+    public function mainCategories(PageRequest $pageRequest): JsonResponse
     {
-        $categories = Category::with('brand')->whereNull('parent_id')->get();
+        $categories = Category::with('brand')->whereNull('parent_id')->paginate($pageRequest->page_count);;
         return self::successResponsePaginate(data: CategoryResource::collection($categories)->response()->getData(true));
 
     }
