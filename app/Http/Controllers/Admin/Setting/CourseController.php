@@ -35,7 +35,7 @@ class CourseController extends DashboardController
     public function updateCourse(UpdateCourseRequest $request, Course $course)
     {
         $course->update($request->validated());
-        if ($request->has('course')) {
+        if ($request->course) {
             $files = $request->allFiles()['course'] ?? null;
             if ($files) {
                 handleMultiMediaUploads($files, $course, true);
