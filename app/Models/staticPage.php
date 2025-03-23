@@ -26,9 +26,7 @@ class staticPage extends Model implements HasMedia
         'end_desc',
     ];
 
-    protected function casts(): array
-    {
-        return [
+    protected $casts = [
             'hero_main_title' => 'array',
             'hero_title' => 'array',
             'hero_desc' => 'array',
@@ -39,5 +37,5 @@ class staticPage extends Model implements HasMedia
             'end_title' => 'array',
             'end_desc' => 'array',
         ];
-    }
+
 }
