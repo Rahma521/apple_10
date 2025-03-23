@@ -6,7 +6,7 @@ use App\Http\Requests\ApiFormRequest;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateCourseRequest extends ApiFormRequest
+class UpdateCourseRequest extends FormRequest
 {
     public function rules(): array
     {
