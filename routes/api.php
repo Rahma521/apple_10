@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\Setting\CourseController;
+use App\Http\Controllers\Admin\Setting\ServiceController;
 use App\Http\Controllers\Admin\Setting\StaticPageController;
 use App\Http\Controllers\Web\ContactFormController;
 use App\Http\Middleware\SetOrganization;
@@ -73,3 +75,7 @@ Route::middleware(['CheckUser'])->group(function () {
 
 Route::get('static-pages', [StaticPageController::class,'getPagesKeys']);
 Route::get('static-pages/{key}', [StaticPageController::class,'getPageByKey']);
+Route::apiResource('courses', CourseController::class)->except('store', 'update');
+Route::apiResource('services', ServiceController::class)->except('store', 'update');
+
+

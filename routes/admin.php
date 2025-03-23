@@ -66,7 +66,6 @@ Route::middleware(['CheckAdmin'])->group(function () {
     Route::post('courses', [CourseController::class,'storeCourse']);
     Route::post('courses/{course}', [CourseController::class,'updateCourse']);
 
-    Route::apiResource('courses', CourseController::class)->except('store', 'update');
     Route::apiResource('services', ServiceController::class);
    // Route::apiResource('static-pages', StaticPageController::class);
     Route::post('static-pages/{key}', [StaticPageController::class,'updatePageByKey']);
