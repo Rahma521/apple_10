@@ -17,4 +17,9 @@ class ServiceController extends dashboardController
         $this->storeRequestClass = new StoreServiceRequest();
         $this->updateRequestClass = new UpdateServiceRequest();
     }
+
+    public function allServices()
+    {
+        return ServiceResource::collection(Service::all());
+    }
 }

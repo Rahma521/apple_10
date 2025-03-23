@@ -77,5 +77,7 @@ Route::get('static-pages', [StaticPageController::class,'getPagesKeys']);
 Route::get('static-pages/{key}', [StaticPageController::class,'getPageByKey']);
 Route::apiResource('courses', CourseController::class)->except('store', 'update');
 Route::apiResource('services', ServiceController::class)->except('store', 'update');
+Route::get('allServices', [ServiceController::class,'allServices']);
+
 
 
