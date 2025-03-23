@@ -6,6 +6,7 @@ use App\Http\Controllers\Base\DashboardController;
 use App\Http\Requests\Store\StoreCategoryRequest;
 use App\Http\Requests\Update\UpdateCategoryRequest;
 use App\Http\Resources\CategoryResource;
+use App\Http\Resources\OfferResource;
 use App\Http\Resources\SubCategoryResource;
 use App\Models\Category;
 use http\Env\Request;
@@ -26,7 +27,8 @@ class CategoryController extends DashboardController
     public function mainCategories(): JsonResponse
     {
         $categories = Category::with('brand')->whereNull('parent_id')->get();
-        return self::successResponse(data:CategoryResource::collection($categories));
+        return self::successResponsePaginate(data: CategoryResource::collection($categories)->response()->getData(true));
+
     }
 
     public function subCategories(Category $category): JsonResponse
