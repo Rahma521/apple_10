@@ -18,6 +18,8 @@ class CourseResource extends JsonResource
             'url' => $this->url,
             'video' => $this->getFirstMediaUrl('video'),
             'image' => $this->getFirstMediaUrl('image'),
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
             'translations' => $this->translations
         ];
     }
