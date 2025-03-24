@@ -32,9 +32,9 @@ class CategoryController extends DashboardController
 
     }
 
-    public function subCategories(Category $category): JsonResponse
+    public function subCategories(PageRequest $pageRequest ,Category $category): JsonResponse
     {
-        $categories = Category::with('products','parent')->where('parent_id',$category->id)->get();
-        return self::successResponse(data:SubCategoryResource::collection($categories));
+        $categories = Category::with('products','parent')->where('parent_id',$category->id)->paginate($pageRequest->page_count);
+        return self::successResponsePaginate(data: CategoryResource::collection($categories)->response()->getData(true));
     }
 }
