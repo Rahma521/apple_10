@@ -40,11 +40,11 @@ class OrderService
             'first_name' => $addressData['first_name'],
             'last_name' => $addressData['last_name'],
             'phone' => $addressData['phone'],
-            'zip_code' => $addressData['zip_code'],
-            'city_id' => $addressData['city_id'],
-            'district' => $addressData['district'],
+            'zip_code' => $addressData['zip_code']?? NULL,
+            'city_id' => $addressData['city_id']?? NULL,
+            'district' => $addressData['district']?? NULL,
             'short_address' => $addressData['short_address'],
-            'full_address' => $addressData['full_address'],
+            'full_address' => $addressData['full_address']?? NULL,
             'type' => $addressData['type']
         ]);
     }

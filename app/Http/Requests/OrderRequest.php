@@ -36,26 +36,35 @@ class OrderRequest extends FormRequest
                 'max:20'
             ],
             'address.zip_code' => [
-                Rule::requiredIf($this->has('address')),
+                Rule::requiredIf(function () {
+                    return $this->has('address') && $this->input('address.type') == 'home';
+                }),
                 'string',
                 'max:10'
             ],
             'address.city_id' => [
-                Rule::requiredIf($this->has('address')),
+                Rule::requiredIf(function () {
+                    return $this->has('address') && $this->input('address.type') == 'home';
+                }),
                 'exists:cities,id'
             ],
             'address.district' => [
-                Rule::requiredIf($this->has('address')),
+                Rule::requiredIf(function () {
+                    return $this->has('address') && $this->input('address.type') == 'home';
+                }),
                 'string',
                 'max:255'
             ],
             'address.short_address' => [
                 Rule::requiredIf($this->has('address')),
+
                 'string',
                 'max:500'
             ],
             'address.full_address' => [
-                Rule::requiredIf($this->has('address')),
+                Rule::requiredIf(function () {
+                    return $this->has('address') && $this->input('address.type') == 'home';
+                }),
                 'string'
             ],
             'address.type' => [

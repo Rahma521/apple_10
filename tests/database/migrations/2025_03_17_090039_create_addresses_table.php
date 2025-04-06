@@ -24,7 +24,7 @@ class CreateAddressesTable extends Migration
             $table->unsignedBigInteger('city_id')->nullable();
             $table->string('district')->nullable();
             $table->string('short_address')->nullable();
-            $table->longText('full_address');
+            $table->longText('full_address')->nullable();
             $table->timestamps();
         });
     }
