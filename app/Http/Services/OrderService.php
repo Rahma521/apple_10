@@ -75,7 +75,7 @@ class OrderService
             'order_number' => $this->generateOrderNumber(),
             'payment_method' => $orderData['payment_method'],
             'order_status' => OrderStatusEnum::pending->value,
-            'delivery_cost' => $this->user?->organization?->delivery_price,
+            'delivery_cost' => $this->getDeliveryCost(auth('sanctum')->user()->id),
             'total' => $this->getCartTotal($cartId) + $this->getDeliveryCost(auth('sanctum')->user()->id),
         ]);
 
