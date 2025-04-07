@@ -20,7 +20,7 @@ class OrderResource extends JsonResource
             'order_status' => $this->order_status?->label(),
             'order_status_id' => $this->order_status,
             'delivery_cost' => $this->user?->organization?->delivery_price,
-            'total' => $this->total + $this->user?->organization?->delivery_price,
+            'total' => $this->total,
             'user' => $this->user?->name,
             'email' => $this->user?->email,
 
