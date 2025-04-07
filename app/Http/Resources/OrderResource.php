@@ -19,7 +19,7 @@ class OrderResource extends JsonResource
             'payment_status' => $this->payment_status,
             'order_status' => $this->order_status?->label(),
             'order_status_id' => $this->order_status,
-            'delivery_cost' => $this->user?->organization?->delivery_price,
+            'delivery_cost' => $this->delivery_cost ?? $this->user?->organization?->delivery_price,
             'total' => $this->total,
             'user' => $this->user?->name,
             'email' => $this->user?->email,
