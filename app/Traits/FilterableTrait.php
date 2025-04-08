@@ -67,6 +67,9 @@ trait FilterableTrait
         $endDate = $filters[$endKey] ?? null;
 
         if ($startDate || $endDate) {
+            if ($endDate) {
+                $endDate = \Carbon\Carbon::parse($endDate)->endOfDay();
+            }
             $query->where(function ($q) use ($columns, $startDate, $endDate) {
                 if ($startDate) {
                     $q->where($columns, '>=', $startDate);
