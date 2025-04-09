@@ -16,6 +16,7 @@ use App\Models\Product;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 
 class ProductController extends Controller
@@ -27,6 +28,68 @@ class ProductController extends Controller
         $products = Product::with('assignedOrganizations')->filter($request, (array) $product->filterableColumns)->paginate($pageRequest->page_count);
         return self::successResponsePaginate(data: ProductResource::collection($products)->response()->getData(true));
     }
+
+    public function getOMStockQty(Request $request): JsonResponse
+    {
+        try {
+            // For testing purposes, using static data as per documentation
+            $requestData = [
+                [
+                    "compId" => "ACR",  // Case matches the example in documentation
+                    "ItemId" => "Item1", // Using a sample item ID
+                    "LocId" => "BLU"
+                ]
+            ];
+
+            // Add authentication header as specified in the documentation
+            // Note: In production, store userId in .env file
+            $userId = "YOUR_USER_ID"; // Replace with the actual User ID provided by Midis
+
+            // Make the API request with Basic Auth
+            $response = Http::withBasicAuth($userId, '')
+                ->post('https://erptrvksa.midisglobal.com/api/GetOMStockQty', $requestData);
+
+            // Check if the request was successful (HTTP 200)
+            if ($response->successful()) {
+                // The API might return HTTP 200 but still contain error information in the response body
+                $responseData = $response->json();
+
+                // Process the response to check for API-level errors
+                // The documentation shows that each item in the response may have its own error
+                // Assuming your ResponseTrait has a successResponse method
+                // If there's a specific format required by your ResponseTrait, adjust accordingly
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Stock quantity data retrieved',
+                    'data' => $responseData
+                ], 200);
+            }
+
+            // Handle specific error codes based on documentation
+            $statusCode = $response->status();
+            $errorMessage = 'Failed to retrieve stock quantity';
+
+            switch ($statusCode) {
+                case 400:
+                    $errorMessage = 'Bad request: Invalid format or company ID';
+                    break;
+                case 401:
+                    $errorMessage = 'Unauthorized: Authentication failed';
+                    break;
+                case 406:
+                    $errorMessage = 'Not Acceptable: Location or item does not exist';
+                    break;
+                case 500:
+                    $errorMessage = 'Internal Server Error';
+                    break;
+            }
+
+            return $this->errorResponse($errorMessage, $statusCode);
+        } catch (\Exception $e) {
+            return $this->errorResponse('An error occurred while retrieving stock quantity: ' . $e->getMessage(), 500);
+        }
+    }
+
 
     public function store(StoreProductRequest $request)
     {
