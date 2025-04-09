@@ -35,9 +35,14 @@ class ProductController extends Controller
             // For testing purposes, using static data as per documentation
             $requestData = [
                 [
-                    "compId" => "ACR",  // Case matches the example in documentation
-                    "ItemId" => "MYN13AH/A", // Using a sample item ID
-                    "LocId" => "BLU"
+                    "compId" => "ACR",// Case matches the example in documentation
+                    // "compId" => "ACL",
+
+                    "ItemId" => "MC7U4AB/A", // Using a sample item ID
+                    // "ItemId" => "MYN13AH/A",
+
+                    "LocId" => "RAJHI"
+                    //"LocId" => "BLU"
                 ]
             ];
 
