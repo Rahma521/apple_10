@@ -48,13 +48,12 @@ class ProductController extends Controller
 
             // Add authentication header as specified in the documentation
             // Note: In production, store userId in .env file
-            $userId = "Basic SjEwMDE="; // Replace with the actual User ID provided by Midis
+            $userId = ""; // Replace with the actual User ID provided by Midis
 
             // Make the API request with Basic Auth
             $response = Http::withBasicAuth($userId, '')
                 ->post('https://erptrvksa.midisglobal.com/api/GetOMStockQty', $requestData);
 
-            dd($response);
             // Check if the request was successful (HTTP 200)
             if ($response->successful()) {
                 // The API might return HTTP 200 but still contain error information in the response body
