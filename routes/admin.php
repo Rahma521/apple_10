@@ -59,6 +59,7 @@ Route::middleware(['CheckAdmin'])->group(function () {
     Route::post('update-discount/{organization}', [OrganizationController::class,'updateDiscountForAssignedProduct']);
 
     Route::get('stock-quantity', [ProductController::class, 'getOMStockQty']);
+    Route::get('check-quantity', [ProductController::class, 'checkQuantityAvailable']);
 
     Route::get('assigned-product/{product}/organizations', [ProductController::class,'getAssignedProducts']);
     Route::post('assign-product/{product}/organizations', [ProductController::class,'assignProducts']);

@@ -54,7 +54,7 @@ class ProductController extends Controller
             $response = Http::withBasicAuth($userId, '')
                 ->post('https://erptrvksa.midisglobal.com/api/GetOMStockQty', $requestData);
 
-            dd($response); 
+            dd($response);
             // Check if the request was successful (HTTP 200)
             if ($response->successful()) {
                 // The API might return HTTP 200 but still contain error information in the response body
@@ -96,7 +96,79 @@ class ProductController extends Controller
         }
     }
 
+    public function checkQuantityAvailable(Request $request): JsonResponse
+    {
+        try {
+            // For testing purposes, using static data as per documentation
+            $requestData = [
+                "CompId" => "ACR",
+                "ITEM_ID" => "IT1",
+                "WHSE_ID" => "BLU",
+                "QTY" => 4.0,
+                // Optional parameter
+                // "CASE_REF" => "CASE123"
+            ];
 
+            // Add authentication header as specified in the documentation
+            // Note: In production, store userId in .env file
+            $userId = "Basic SjEwMDE="; // Replace with the actual User ID provided by Midis
+
+            // Make the API request with Basic Auth
+            $response = Http::withBasicAuth($userId, '')
+                ->post('https://erptrvksa.midisglobal.com/api/ChkQtyAvailable', $requestData);
+
+            // Check if the request was successful (HTTP 200)
+            if ($response->successful()) {
+                $responseData = $response->json();
+
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Quantity availability checked successfully',
+                    'data' => $responseData
+                ], 200);
+            }
+
+            // Handle specific error codes based on documentation
+            $statusCode = $response->status();
+            $errorMessage = 'Failed to check quantity availability';
+
+            switch ($statusCode) {
+                case 400:
+                    $errorMessage = 'Bad request: Invalid format or company ID';
+                    break;
+                case 401:
+                    $errorMessage = 'Unauthorized: Authentication failed';
+                    break;
+                case 406:
+                    // Check specific error codes for this API
+                    $responseData = $response->json();
+                    if (isset($responseData[0]['errorCode'])) {
+                        switch ($responseData[0]['errorCode']) {
+                            case 'TRV_CQA_1040':
+                                $errorMessage = 'Item ID does not exist';
+                                break;
+                            case 'TRV_CQA_1041':
+                                $errorMessage = 'Warehouse ID is not mapped';
+                                break;
+                            case 'TRV_CQA_1042':
+                                $errorMessage = 'Item ID does not exist in specified location';
+                                break;
+                            case 'TRV_CQA_1043':
+                                $errorMessage = 'Quantity should be greater than 0';
+                                break;
+                        }
+                    }
+                    break;
+                case 500:
+                    $errorMessage = 'Internal Server Error';
+                    break;
+            }
+
+            return $this->errorResponse($errorMessage, $statusCode);
+        } catch (\Exception $e) {
+            return $this->errorResponse('An error occurred while checking quantity availability: ' . $e->getMessage(), 500);
+        }
+    }
     public function store(StoreProductRequest $request)
     {
         $validatedData =$request->validated();
