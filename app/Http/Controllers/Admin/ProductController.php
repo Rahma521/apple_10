@@ -54,6 +54,7 @@ class ProductController extends Controller
             $response = Http::withBasicAuth($userId, '')
                 ->post('https://erptrvksa.midisglobal.com/api/GetOMStockQty', $requestData);
 
+            return $response;
             // Check if the request was successful (HTTP 200)
             if ($response->successful()) {
                 // The API might return HTTP 200 but still contain error information in the response body
