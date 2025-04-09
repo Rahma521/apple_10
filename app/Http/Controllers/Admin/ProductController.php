@@ -36,14 +36,14 @@ class ProductController extends Controller
             $requestData = [
                 [
                     "compId" => "ACR",  // Case matches the example in documentation
-                    "ItemId" => "Item1", // Using a sample item ID
+                    "ItemId" => "MYN13AH/A", // Using a sample item ID
                     "LocId" => "BLU"
                 ]
             ];
 
             // Add authentication header as specified in the documentation
             // Note: In production, store userId in .env file
-            $userId = "YOUR_USER_ID"; // Replace with the actual User ID provided by Midis
+            $userId = "Basic SjEwMDE="; // Replace with the actual User ID provided by Midis
 
             // Make the API request with Basic Auth
             $response = Http::withBasicAuth($userId, '')
