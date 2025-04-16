@@ -80,6 +80,6 @@ Route::apiResource('courses', CourseController::class)->except('store', 'update'
 Route::apiResource('services', ServiceController::class)->except('store', 'update');
 Route::get('allServices', [ServiceController::class,'allServices']);
 
-Route::get('stock-quantity', [ProductController::class, 'getOMStockQty']);
-Route::get('check-quantity', [ProductController::class, 'checkQuantityAvailable']);
+Route::post('stock-quantity', [ProductController::class, 'getOMStockQty']);
+Route::post('check-quantity', [ProductController::class, 'checkQuantityAvailable']);
 
