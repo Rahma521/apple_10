@@ -41,28 +41,18 @@ class ProductController extends Controller
                     "ItemId" => "MC7U4AB/A", // Using a sample item ID
                     // "ItemId" => "MYN13AH/A",
 
-                    "LocId" => "RAJHI"
-                    //"LocId" => "BLU"
+                    //"LocId" => "RAJHI"
+                    "LocId" => "BLU"
                 ]
             ];
 
-            // Add authentication header as specified in the documentation
-            // Note: In production, store userId in .env file
-            $userId = ""; // Replace with the actual User ID provided by Midis
-
+            $userId = "Basic QTQ3NjE=";
             // Make the API request with Basic Auth
-            $response = Http::withBasicAuth($userId, '')
-                ->post('https://erptrvksa.midisglobal.com/api/GetOMStockQty', $requestData);
-
-            // Check if the request was successful (HTTP 200)
+            $response = Http::withBasicAuth($userId, '')->timeout(30)->post('https://erptrvksa.midisglobal.com/api/GetOMStockQty', $requestData);
             if ($response->successful()) {
                 // The API might return HTTP 200 but still contain error information in the response body
                 $responseData = $response->json();
 
-                // Process the response to check for API-level errors
-                // The documentation shows that each item in the response may have its own error
-                // Assuming your ResponseTrait has a successResponse method
-                // If there's a specific format required by your ResponseTrait, adjust accordingly
                 return response()->json([
                     'status' => 200,
                     'message' => 'Stock quantity data retrieved',
