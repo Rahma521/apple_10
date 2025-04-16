@@ -35,14 +35,17 @@ class ProductController extends Controller
             // For testing purposes, using static data as per documentation
             $requestData = [
                 [
-                    "compId" => "ACR",// Case matches the example in documentation
+                    "CompId" => $request->CompId,
+                    "ItemId" => $request->ItemId,
+                    "LocId" => $request->LocId,
+                    //"compId" => "ACR",
                     // "compId" => "ACL",
 
-                    "ItemId" => "MC7U4AB/A", // Using a sample item ID
+                   // "ItemId" => "MC7U4AB/A",
                     // "ItemId" => "MYN13AH/A",
 
                     //"LocId" => "RAJHI"
-                    "LocId" => "BLU"
+                    //"LocId" => "BLU"
                 ]
             ];
 
@@ -90,17 +93,21 @@ class ProductController extends Controller
         try {
             // For testing purposes, using static data as per documentation
             $requestData = [
-                "CompId" => "ACR",
-                "ITEM_ID" => "IT1",
-                "WHSE_ID" => "BLU",
-                "QTY" => 4.0,
+                "CompId" => $request->CompId,
+                "ITEM_ID" => $request->ITEM_ID,
+                "WHSE_ID" => $request->WHSE_ID,
+                "QTY" => $request->QTY,
+//                "CompId" => "ACR",
+//                "ITEM_ID" => "IT1",
+//                "WHSE_ID" => "BLU",
+//                "QTY" => 4.0,
                 // Optional parameter
                 // "CASE_REF" => "CASE123"
             ];
 
             // Add authentication header as specified in the documentation
             // Note: In production, store userId in .env file
-            $userId = "Basic SjEwMDE="; // Replace with the actual User ID provided by Midis
+            $userId = "Basic QTQ3NjE="; // Replace with the actual User ID provided by Midis
 
             // Make the API request with Basic Auth
             $response = Http::withBasicAuth($userId, '')
